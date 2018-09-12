@@ -20,7 +20,7 @@
     "webpack-dev-server": "^3.1.5"
   },
   "scripts": {
-    "dev": "npx webpack demo/src/index.js",
+    "dev": "npx webpack demo/src/index.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "npm run test && npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo"
   },

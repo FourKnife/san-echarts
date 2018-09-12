@@ -1,10 +1,15 @@
-const component = () => {
-  var element = document.createElement('div');
+import san from 'san';
 
-  // Lodash（目前通过一个 script 脚本引入）对于执行这一行是必需的
-  element.innerHTML = 'hello'
+const MyApp = san.defineComponent({
+  template: '<p>Hello {{name}}!</p>',
 
-  return element;
-}
+  initData() {
+    return {
+      name: 'San',
+    };
+  },
+});
 
-document.body.appendChild(component());
+
+const myApp = new MyApp();
+myApp.attach(document.body);
