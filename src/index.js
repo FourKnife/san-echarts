@@ -19,13 +19,15 @@ class Echarts extends Component {
       lazyUpdate: false,
       loadingOption: null,
       onEvents: {},
+      style: {},
+      theme: {},
     };
   }
 
   attached() {
     this.prevProps = {};
     this.echartsElement = this.ref('J_Echarts');
-    this.render();
+    this.render(this.data.get());
   }
 
   updated() {
@@ -134,8 +136,29 @@ class Echarts extends Component {
 }
 
 Echarts.prototype.template = `
-  <div s-ref="J_Echarts">
+<template>
+  <div class="ss" s-ref="J_Echarts" style="{{newStyle}}">
   </div>
+  </template>
 `;
+
+Echarts.prototype.computed = {
+  newStyle() {
+    const newStyle = {};
+    const style = this.data.get('style');
+    style.split(';').map((item) => {
+      const [key, value] = item.split(':').map(elem => elem.trim());
+      newStyle[key] = value;
+    });
+    return { height: '300px', ...newStyle };
+  },
+};
+
+Echarts.prototype.filters = {
+  join(obj, char) {
+    const keys = Object.keys(obj);
+    return keys.map(key => `${key}:${obj[key]}`).join(char);
+  },
+};
 
 export default Echarts;
