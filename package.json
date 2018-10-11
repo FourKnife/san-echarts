@@ -2,19 +2,24 @@
   "name": "san-echarts",
   "version": "1.0.0",
   "description": "",
-  "main": "src/index.js",
+  "main": "lib/index.js",
   "dependencies": {
+    "@babel/polyfill": "^7.0.0",
+    "babel-loader": "^8.0.4",
     "echarts": "^4.1.0",
     "fast-deep-equal": "^2.0.1",
     "san": "^3.6.3",
     "size-sensor": "^0.2.0"
   },
   "devDependencies": {
-    "babel": "^6.23.0",
-    "babel-cli": "^6.26.0",
+    "@babel/cli": "^7.1.2",
+    "@babel/core": "^7.1.2",
+    "@babel/preset-env": "^7.1.0",
+    "cross-env": "^5.2.0",
     "eslint": "^4.19.1",
     "eslint-config-airbnb-base": "^13.0.0",
     "eslint-plugin-import": "^2.13.0",
+    "rimraf": "^2.6.2",
     "webpack": "^4.16.4",
     "webpack-cli": "^3.1.0",
     "webpack-dev-server": "^3.1.5"
@@ -22,7 +27,8 @@
   "scripts": {
     "dev": "npx webpack demo/src/index.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "npm run test && npm run clean && cross-env NODE_ENV=production babel src -d lib && npm run demo"
+    "clean": "rimraf lib/index.js",
+    "build": "npm run clean && cross-env NODE_ENV=production babel src -d lib"
   },
   "repository": {
     "type": "git",
@@ -32,7 +38,7 @@
     "san",
     "echarts"
   ],
-  "author": "umu",
+  "author": "umu_dr",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/FourKnife/san-echarts/issues"

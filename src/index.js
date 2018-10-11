@@ -71,8 +71,16 @@ class Echarts extends Component {
     }
   }
 
-  dispose() {
-
+  disposed() {
+    if (this.echartsElement) {
+      try {
+        clear(this.echartsElement);
+      } catch (e) {
+        console.warn(e);
+      }
+      // dispose echarts instance
+      echarts.dispose(this.echartsElement);
+    }
   }
 
   render(props) {

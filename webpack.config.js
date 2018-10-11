@@ -10,4 +10,15 @@ module.exports = {
   devServer: {
     contentBase: path.join(__dirname, 'demo/dist'),
   },
+  module: {
+    rules: [
+      {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+        },
+      },
+    ],
+  },
 };
